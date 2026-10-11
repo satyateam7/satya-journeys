@@ -43,3 +43,8 @@ This starter avoids paid hosting by design, but free-plan limits and provider po
 
 ## Domain safety
 Do not change nameservers until you have checked whether the domain is used for email or other services. Follow the live Cloudflare dashboard instructions and preserve required DNS records.
+
+
+## Plan Your Journey form
+
+See `ENQUIRY-FORM-SETUP.md` and `apps-script/Code.gs` to connect the form to a private Google Sheet and email notifications. The form will not be live until you deploy the Apps Script web app and set its `/exec` URL in `plan-my-trip.njk`.
