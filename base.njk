@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title or metadata.title }}</title>
+  <meta name="description" content="{{ description or metadata.description }}">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/"><span class="brand-mark">SJ</span><span>Satya <b>Journeys</b><small>REAL JOURNEYS. REAL STORIES.</small></span></a>
+    <nav aria-label="Main navigation">
+      <a href="/destinations/">Destinations</a>
+      <a href="/stories/">My Stories</a>
+      <a href="/itineraries/">Itineraries</a>
+      <a href="/about/">About</a>
+      <a class="nav-cta" href="/plan-my-trip/">Plan my trip</a>
+    </nav>
+  </header>
+  <main>
+    {{ content | safe }}
+  </main>
+  <footer class="site-footer">
+    <div><a class="brand brand-footer" href="/"><span class="brand-mark">SJ</span><span>Satya <b>Journeys</b><small>REAL JOURNEYS. REAL STORIES.</small></span></a><p>Travel stories grounded in personal experience and trusted contributions.</p></div>
+    <div class="footer-links"><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/admin/">Publisher login</a></div>
+    <p class="copyright">© {{ currentYear }} Satya Journeys. Travel information can change; verify details before travelling.</p>
+  </footer>
+</body>
+</html>

@@ -4,15 +4,58 @@ title: Plan My Trip | Satya Journeys
 description: Request a customized itinerary based on your destination, dates and budget.
 permalink: /plan-my-trip/index.html
 ---
-<section class="page-intro"><p class="eyebrow">LET'S PLAN</p><h1>Plan your journey</h1><p>Tell us what you have in mind. This starter form opens an email draft; connect a form service later if you want automatic online submissions.</p></section>
+<section class="page-intro"><p class="eyebrow">LET'S PLAN</p><h1>Plan your journey</h1><p>Share a few details and Satya Journeys will review your request and get back to you.</p></section>
 <section class="form-panel">
-<form action="mailto:hello@satyajourneys.com" method="post" enctype="text/plain">
-<label>Destination or route<input name="Destination or route" required placeholder="e.g. Hyderabad to Goa"></label>
-<div class="form-row"><label>Travel dates<input name="Travel dates" placeholder="e.g. 12–16 December"></label><label>Number of travellers<input name="Travellers" type="number" min="1" value="2"></label></div>
-<label>Approximate total budget<select name="Budget"><option>Under ₹15,000</option><option>₹15,000–₹30,000</option><option>₹30,000–₹60,000</option><option>Above ₹60,000</option></select></label>
-<label>Preferred transport<select name="Transport"><option>Flexible / need advice</option><option>Car / road trip</option><option>Train</option><option>Flight</option></select></label>
-<label>What kind of journey would you like?<textarea name="Trip details" rows="5" placeholder="Places, duration, accommodation, interests and other preferences"></textarea></label>
-<button class="button" type="submit">Prepare enquiry email</button>
-<p class="small-note">This demo uses your visitor's email application and is not a reliable production form. Replace it with a properly tested form service before launch.</p>
+<form id="journey-request-form">
+  <label>Your name<input name="name" required maxlength="100" autocomplete="name" placeholder="Full name"></label>
+  <div class="form-row"><label>Email address<input name="email" type="email" required maxlength="200" autocomplete="email" placeholder="you@example.com"></label><label>Phone / WhatsApp (optional)<input name="phone" type="tel" maxlength="40" autocomplete="tel" placeholder="Contact number"></label></div>
+  <label>Destination or route<input name="destination" required maxlength="200" placeholder="e.g. Hyderabad to Goa"></label>
+  <div class="form-row"><label>Travel dates<input name="travelDates" maxlength="100" placeholder="e.g. 12–16 December"></label><label>Number of travellers<input name="travellers" type="number" min="1" max="100" value="2" required></label></div>
+  <label>Approximate total budget<select name="budget"><option>Under ₹15,000</option><option>₹15,000–₹30,000</option><option>₹30,000–₹60,000</option><option>Above ₹60,000</option><option>Need help deciding</option></select></label>
+  <label>Preferred transport<select name="transport"><option>Flexible / need advice</option><option>Car / road trip</option><option>Train</option><option>Flight</option><option>Bus</option></select></label>
+  <label>What kind of journey would you like?<textarea name="details" rows="5" maxlength="4000" placeholder="Places, duration, accommodation, interests and other preferences"></textarea></label>
+  <label class="privacy-consent"><input type="checkbox" name="privacyConsent" value="yes" required> I agree that Satya Journeys may use these details to respond to my travel enquiry. See the <a href="/privacy/">privacy notice</a>.</label>
+  <div class="honeypot" aria-hidden="true"><label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+  <button class="button" id="journey-submit" type="submit">Send journey request</button>
+  <p id="journey-form-status" class="small-note" role="status" aria-live="polite">Your request will be recorded in our enquiry sheet and an email alert will be sent to the Satya Journeys team.</p>
 </form>
 </section>
+<script>
+(() => {
+  // Replace this placeholder with the deployed Google Apps Script Web App URL ending in /exec.
+  const ENDPOINT = 'PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+  const form = document.getElementById('journey-request-form');
+  const button = document.getElementById('journey-submit');
+  const status = document.getElementById('journey-form-status');
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (ENDPOINT === 'PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
+      status.textContent = 'The enquiry form is not connected yet. Please try again later or contact Satya Journeys directly.';
+      return;
+    }
+    if (!form.reportValidity()) return;
+    button.disabled = true;
+    status.textContent = 'Sending your request…';
+    const data = new URLSearchParams();
+    for (const [key, value] of new FormData(form).entries()) data.append(key, String(value));
+    data.append('pageUrl', window.location.href);
+    try {
+      // Apps Script is cross-origin; no-cors allows a simple form-encoded POST without a preflight.
+      // Its response cannot be read by this page, so also verify the row/email during setup testing.
+      await fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: data });
+      form.reset();
+      status.textContent = 'Your request has been sent. We’ll review it and contact you using the details provided. If you do not hear from us, please contact us again.';
+    } catch (error) {
+      status.textContent = 'We could not send your request due to a connection problem. Please try again or contact Satya Journeys directly.';
+    } finally {
+      button.disabled = false;
+    }
+  });
+})();
+</script>
+<style>
+.privacy-consent { display:flex; align-items:flex-start; gap:.65rem; line-height:1.5; }
+.privacy-consent input { width:auto; margin-top:.3rem; }
+.honeypot { position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
+#journey-submit:disabled { opacity:.65; cursor:wait; }
+</style>
