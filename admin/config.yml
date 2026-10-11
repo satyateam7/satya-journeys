@@ -3,7 +3,7 @@ backend:
   repo: satyateam7/satya-journeys
   branch: main
   base_url: https://satya-journeys-oauth.t7in007.workers.dev
-  auth_endpoint: auth
+  auth_endpoint: /auth
 
 media_folder: "uploads"
 public_folder: "/uploads"
