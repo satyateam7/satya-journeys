@@ -1,0 +1,10 @@
+---
+layout: layouts/base.njk
+title: Travel Stories | Satya Journeys
+description: Personal travel stories, original photographs and video journeys.
+permalink: /stories/index.html
+---
+<section class="page-intro"><p class="eyebrow">MEMORIES FROM THE ROAD</p><h1>Travel stories</h1><p>Every image has a story. Every video captures a part of the journey.</p></section>
+<section class="section"><div class="card-grid">
+{% for item in collections.stories %}{% include "partials/story-card.njk" %}{% else %}<div class="empty-state"><h3>Your stories belong here</h3><p>Publish your first journey and its original media.</p></div>{% endfor %}
+</div></section>

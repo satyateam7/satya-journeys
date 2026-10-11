@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+title: Plan My Trip | Satya Journeys
+description: Request a customized itinerary based on your destination, dates and budget.
+permalink: /plan-my-trip/index.html
+---
+<section class="page-intro"><p class="eyebrow">LET'S PLAN</p><h1>Plan your journey</h1><p>Tell us what you have in mind. This starter form opens an email draft; connect a form service later if you want automatic online submissions.</p></section>
+<section class="form-panel">
+<form action="mailto:hello@satyajourneys.com" method="post" enctype="text/plain">
+<label>Destination or route<input name="Destination or route" required placeholder="e.g. Hyderabad to Goa"></label>
+<div class="form-row"><label>Travel dates<input name="Travel dates" placeholder="e.g. 12–16 December"></label><label>Number of travellers<input name="Travellers" type="number" min="1" value="2"></label></div>
+<label>Approximate total budget<select name="Budget"><option>Under ₹15,000</option><option>₹15,000–₹30,000</option><option>₹30,000–₹60,000</option><option>Above ₹60,000</option></select></label>
+<label>Preferred transport<select name="Transport"><option>Flexible / need advice</option><option>Car / road trip</option><option>Train</option><option>Flight</option></select></label>
+<label>What kind of journey would you like?<textarea name="Trip details" rows="5" placeholder="Places, duration, accommodation, interests and other preferences"></textarea></label>
+<button class="button" type="submit">Prepare enquiry email</button>
+<p class="small-note">This demo uses your visitor's email application and is not a reliable production form. Replace it with a properly tested form service before launch.</p>
+</form>
+</section>

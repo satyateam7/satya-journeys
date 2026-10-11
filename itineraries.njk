@@ -1,0 +1,12 @@
+---
+layout: layouts/base.njk
+title: Travel Itineraries | Satya Journeys
+description: Practical itineraries based on personal travel and trusted contributions.
+permalink: /itineraries/index.html
+---
+<section class="page-intro"><p class="eyebrow">PLAN WITH EXPERIENCE</p><h1>Travel itineraries</h1><p>Day-by-day plans, travel notes, useful contacts and transparent source attribution.</p></section>
+<section class="section"><div class="list-grid">
+{% for item in collections.itineraries %}
+<article class="itinerary-card"><p class="eyebrow">{{ item.data.duration or "TRAVEL PLAN" }} · {{ item.data.source_type or "CONTRIBUTED" }}</p><h2><a href="{{ item.url }}">{{ item.data.title }}</a></h2><p>{{ item.data.summary }}</p><p class="source-line">Source: {{ item.data.source_name or "Not specified" }}</p><a class="text-link" href="{{ item.url }}">View itinerary →</a></article>
+{% else %}<div class="empty-state"><h3>Itineraries coming soon</h3><p>Start by documenting a journey you've personally taken.</p></div>{% endfor %}
+</div></section>

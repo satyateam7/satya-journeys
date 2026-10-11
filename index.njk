@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+title: Satya Journeys
+description: Real journeys, personal stories and travel plans built on first-hand experiences.
+---
+<section class="hero">
+  <p class="eyebrow">REAL JOURNEYS · PERSONAL STORIES</p>
+  <h1>Every journey has a story.</h1>
+  <p class="hero-copy">Discover places through real experiences, original photographs, travel videos and itineraries shared by people who have been there.</p>
+  <div class="actions">
+    <a class="button" href="/destinations/">Explore destinations</a>
+    <a class="button button-outline" href="/plan-my-trip/">Plan your journey</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading"><div><p class="eyebrow">START EXPLORING</p><h2>Destinations</h2></div><a href="/destinations/">All destinations →</a></div>
+  <div class="card-grid">
+    {% for item in collections.destinations %}
+      {% include "partials/destination-card.njk" %}
+    {% else %}
+      <div class="empty-state"><h3>Your travel map starts here</h3><p>Add your first destination using the publishing dashboard after CMS authentication is configured.</p></div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading"><div><p class="eyebrow">MEMORIES FROM THE ROAD</p><h2>Travel stories</h2></div><a href="/stories/">All stories →</a></div>
+  <div class="card-grid">
+    {% for item in collections.stories %}
+      {% include "partials/story-card.njk" %}
+    {% else %}
+      <div class="empty-state"><p>Personal stories, photo captions and video journeys will appear here.</p></div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cta-panel">
+  <p class="eyebrow">YOUR NEXT JOURNEY</p>
+  <h2>Found a place you want to explore?</h2>
+  <p>Use an existing itinerary or tell us what kind of trip you have in mind.</p>
+  <a class="button" href="/plan-my-trip/">Request a custom itinerary</a>
+</section>

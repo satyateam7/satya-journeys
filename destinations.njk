@@ -1,0 +1,10 @@
+---
+layout: layouts/base.njk
+title: Explore Destinations | Satya Journeys
+description: Browse destinations documented through real travel experiences.
+permalink: /destinations/index.html
+---
+<section class="page-intro"><p class="eyebrow">THE TRAVEL LIBRARY</p><h1>Explore destinations</h1><p>Places experienced, photographed and remembered — with stories and practical details to help you plan.</p></section>
+<section class="section"><div class="card-grid">
+{% for item in collections.destinations %}{% include "partials/destination-card.njk" %}{% else %}<div class="empty-state"><h3>No destinations published yet</h3><p>Add your first destination through the publisher dashboard once authentication is configured.</p></div>{% endfor %}
+</div></section>
