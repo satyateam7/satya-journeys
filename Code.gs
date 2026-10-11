@@ -1,6 +1,6 @@
 const NOTIFICATION_EMAIL = 't7in007@gmail.com';
 // Paste the ID from the Google Sheet URL between /d/ and /edit.
-const SPREADSHEET_ID = 'PASTE_GOOGLE_SHEET_ID_HERE';
+const SPREADSHEET_ID = '1NRpBHOQTR_2f18Lut8jGOtSQbnNT7Q5JM91TxBhbU4k';
 const SHEET_NAME = 'Journey Requests';
 
 const HEADERS = [
